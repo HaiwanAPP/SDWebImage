@@ -42,18 +42,20 @@ static char TAG_ACTIVITY_SHOW;
 }
 
 - (UIImage *)resizeImage:(UIImage*)image{
-    
-    CGSize newSize = CGSizeMake(self.frame.size.width, self.frame.size.height);
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [image drawAtPoint:CGPointMake((newSize.width-image.size.width)/2, (newSize.height-image.size.height)/2)];
-    CGImageRef newImageRef = CGBitmapContextCreateImage(context);
-    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
-    //CGContextRelease(context);
-    CGImageRelease(newImageRef);
-    UIGraphicsEndImageContext();
-    
-    return newImage;
+    if (image) {
+        CGSize newSize = CGSizeMake(self.frame.size.width, self.frame.size.height);
+        UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [image drawAtPoint:CGPointMake((newSize.width-image.size.width)/2, (newSize.height-image.size.height)/2)];
+        CGImageRef newImageRef = CGBitmapContextCreateImage(context);
+        UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+        //CGContextRelease(context);
+        CGImageRelease(newImageRef);
+        UIGraphicsEndImageContext();
+        
+        return newImage;  
+    }
+    return nil;
 }
 
 - (void)sd_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock {
