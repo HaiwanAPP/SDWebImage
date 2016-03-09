@@ -79,15 +79,27 @@ static char TAG_ACTIVITY_SHOW;
             if (!wself) return;
             dispatch_main_sync_safe(^{
                 if (!wself) return;
-                if (image && (options & SDWebImageAvoidAutoSetImage) && completedBlock)
-                {
-                    completedBlock(image, error, cacheType, url);
-                    return;
+                if (image) {
+                    if (image && (options & SDWebImageAvoidAutoSetImage) && completedBlock)
+                    {
+                        completedBlock(image, error, cacheType, url);
+                        return;
+                    }
+                    if (cacheType == SDImageCacheTypeNone) {
+                        [UIView transitionWithView:wself duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+                            wself.image = image;
+                        } completion:^(BOOL finishedTwo) {
+                            [wself setNeedsLayout];
+                            
+                        }];
+                    }
+                    else
+                    {
+                        wself.image = image;
+                        [wself setNeedsLayout];
+                    }
                 }
-                else if (image) {
-                    wself.image = image;
-                    [wself setNeedsLayout];
-                } else {
+                else {
                     if ((options & SDWebImageDelayPlaceholder)) {
                         wself.image = [self resizeImage:placeholder];
                         [wself setNeedsLayout];
