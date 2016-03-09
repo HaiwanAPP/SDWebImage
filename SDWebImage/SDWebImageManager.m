@@ -55,9 +55,7 @@
     if (self.cacheKeyFilter) {
         return self.cacheKeyFilter(url);
     }else {
-        
         NSString *urlString = [url absoluteString];
-        
         if ([urlString rangeOfString:@"http://ditu.google.cn/maps/api/staticmap"].location == NSNotFound) {
             
             NSArray *arr = [urlString componentsSeparatedByString:@"?"];
@@ -75,24 +73,11 @@
                 [mutableStr appendFormat:@"?%@",arr[1]];
                 
                 urlString = mutableStr;
-                
             }
-            
             return urlString;
-            
         }
         return urlString;
-        
-        //        NSString *urlString = [url absoluteString];
-        //        urlString = [urlString componentsSeparatedByString:@"?"][0];
-        //        urlString = [[urlString componentsSeparatedByString:@"/"] lastObject];
-        //        return urlString;
-        //        return [url absoluteString];
     }
-//    else {
-//        return [url absoluteString];
-//    }
-    
 }
 
 - (BOOL)cachedImageExistsForURL:(NSURL *)url {

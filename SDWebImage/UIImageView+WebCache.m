@@ -49,10 +49,8 @@ static char TAG_ACTIVITY_SHOW;
         [image drawAtPoint:CGPointMake((newSize.width-image.size.width)/2, (newSize.height-image.size.height)/2)];
         CGImageRef newImageRef = CGBitmapContextCreateImage(context);
         UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
-        //CGContextRelease(context);
         CGImageRelease(newImageRef);
         UIGraphicsEndImageContext();
-        
         return newImage;  
     }
     return nil;
