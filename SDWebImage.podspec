@@ -75,7 +75,7 @@ Pod::Spec.new do |s|
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
-  #  Specify the location from where the source should be retrieved.
+  #  Specify the location from where the source should be retrieved
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.source_files  = "SDWebImage", "/Users/HAIWAN/Desktop/SDWebImage/SDWebImage/SDWebImage.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
